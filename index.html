@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapeamento de Serviços Públicos - MZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #2c3e50;
+            --nav-bg: rgba(255, 255, 255, 0.15);
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --nav-bg: rgba(0, 0, 0, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
+        
+        body { height: 200vh; background-color: var(--bg-color); color: var(--text-color); padding-top: 100px; }
+
+        /* Navbar Glassmorphism */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: top 0.4s ease, background 0.3s;
+            z-index: 1000;
+        }
+
+        .logo { font-weight: bold; font-size: 1.2rem; }
+        .nav-links { display: flex; align-items: center; gap: 25px; }
+        
+        .nav-links a, .nav-links button {
+            text-decoration: none;
+            color: var(--text-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-login {
+            background: #2c3e50 !important;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        .dark-mode .btn-login { background: #3498db !important; }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="navbar">
+        <div class="logo" data-i18n="logo">MapeamentoMZ</div>
+        <div class="nav-links">
+            <a href="#inicio" data-i18n="inicio">Início</a>
+            <a href="#sobre" data-i18n="sobre">Sobre Nós</a>
+            
+            <button id="theme-toggle" title="Mudar Fundo"><i class="fas fa-adjust"></i></button>
+            <button id="lang-toggle" title="Idioma"><i class="fas fa-globe"></i></button>
+            
+            <a href="/login" class="btn-login" data-i18n="login">Login</a>
+        </div>
+    </nav>
+
+    <script>
+        // 1. Lógica de Scroll (Sumir Navbar)
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            navbar.style.top = (scrollTop > lastScrollTop && scrollTop > 70) ? "-80px" : "0";
+            lastScrollTop = scrollTop;
+        });
+
+        // 2. Lógica de Tema (Dark/Light)
+        document.getElementById("theme-toggle").addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // 3. Lógica de Idioma (Simples)
+        const translations = {
+            "pt-mz": { logo: "MapeamentoMZ", inicio: "Início", sobre: "Sobre Nós", login: "Login" },
+            "en": { logo: "MappingMZ", inicio: "Home", sobre: "About Us", login: "Login" }
+        };
+
+        let currentLang = "pt-mz";
+        document.getElementById("lang-toggle").addEventListener("click", () => {
+            currentLang = (currentLang === "pt-mz") ? "en" : "pt-mz";
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                el.innerText = translations[currentLang][el.getAttribute("data-i18n")];
+            });
+        });
+    </script>
+</body>
+</html>

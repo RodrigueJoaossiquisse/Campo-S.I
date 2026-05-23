@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | MapeamentoMZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f0f2f5; --text: #2c3e50; --glass: rgba(255, 255, 255, 0.4); --accent: #3498db; }
+        .dark-mode { --bg: #121212; --text: #ffffff; --glass: rgba(0, 0, 0, 0.5); }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
+        body { background: var(--bg); color: var(--text); padding-top: 100px; min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* Navbar Liquid Glass */
+        #navbar {
+            position: fixed; top: 0; width: 100%; height: 70px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 50px; background: var(--glass); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000; transition: top 0.4s ease;
+        }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-links a, .nav-links button { text-decoration: none; color: var(--text); background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 8px 15px; border-radius: 8px; }
+        .nav-links a:hover, .nav-links button:hover { background: var(--accent); color: white; transform: translateY(-2px); }
+
+        /* Container */
+        .container { max-width: 800px; margin: 0 auto 50px; padding: 40px; background: var(--glass); backdrop-filter: blur(15px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); flex: 1; }
+        h1 { margin-bottom: 25px; color: var(--accent); }
+        h2 { margin: 30px 0 15px; }
+        p { margin-bottom: 20px; text-align: justify; line-height: 1.8; }
+
+        /* Rodapé */
+        footer { text-align: center; padding: 30px; background: var(--glass); backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.1); margin-top: auto; }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo"><strong>MapeamentoMZ</strong></div>
+        <div class="nav-links">
+            <a href="index.html" data-i18n="nav_inicio">Início</a>
+            <button id="theme-toggle"><i class="fas fa-adjust"></i></button>
+            <button id="lang-toggle"><i class="fas fa-globe"></i></button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 data-i18n="title">Sobre Nós</h1>
+        <p data-i18n="p1">A jornada do Mapeamento Digital de Serviços Públicos começou com um propósito claro: simplificar o acesso à informação para todos os cidadãos moçambicanos, de norte a sul do país.</p>
+        <p data-i18n="p2">Nós, Alfredo, Shelcio e Rodrigues, estudantes da UNISCED, partilhamos a convicção de que a tecnologia é um motor de transformação social. Ao observarmos os desafios quotidianos enfrentados pelos cidadãos na busca por serviços públicos, decidimos unir as nossas competências para criar uma solução prática e inovadora.</p>
+        <p data-i18n="p3">O resultado é esta plataforma de mapeamento digital, desenvolvida para centralizar a localização de instituições e agilizar a prestação de serviços. O nosso foco não se limita a Maputo; estamos empenhados em mapear instituições públicas em todo o território nacional, garantindo que o cidadão, independentemente da sua localização, tenha acesso a informações claras e precisas.</p>
+
+        <h2 data-i18n="subtitle">A Nossa Visão</h2>
+        <p data-i18n="p4">A nossa visão é ambiciosa: começamos com esta interface funcional, mas o nosso objetivo é evoluir para um ecossistema robusto, sustentado por uma base de dados inteligente e de larga escala. Queremos transformar este projeto numa ferramenta essencial que não apenas mapeie o país, mas que integre e otimize o fluxo de serviços públicos para todos os moçambicanos.</p>
+        <p data-i18n="p5">Acreditamos num Moçambique mais conectado, eficiente e transparente. Este é apenas o primeiro passo do nosso compromisso com a inovação ao serviço do cidadão.</p>
+    </div>
+
+    <footer>
+        <p>© 2026 MapeamentoMZ. Todos os direitos reservados.</p>
+        <p>Desenvolvido por: <strong>Alfredo • Rodrigues • Shelcio</strong></p>
+    </footer>
+
+    <script>
+        // Scroll Navbar
+        let lastScroll = 0;
+        window.addEventListener("scroll", () => {
+            let current = window.pageYOffset;
+            document.getElementById("navbar").style.top = (current > lastScroll && current > 70) ? "-80px" : "0";
+            lastScroll = current;
+        });
+
+        // Tema
+        document.getElementById("theme-toggle").addEventListener("click", () => document.body.classList.toggle("dark-mode"));
+
+        // Tradução
+        const dict = {
+            "pt": { nav_inicio: "Início", title: "Sobre Nós", p1: "A jornada do Mapeamento Digital de Serviços Públicos começou com um propósito claro: simplificar o acesso à informação para todos os cidadãos moçambicanos, de norte a sul do país.", p2: "Nós, Alfredo, Shelcio e Rodrigues, estudantes da UNISCED, partilhamos a convicção de que a tecnologia é um motor de transformação social. Ao observarmos os desafios quotidianos enfrentados pelos cidadãos na busca por serviços públicos, decidimos unir as nossas competências para criar uma solução prática e inovadora.", p3: "O resultado é esta plataforma de mapeamento digital, desenvolvida para centralizar a localização de instituições e agilizar a prestação de serviços. O nosso foco não se limita a Maputo; estamos empenhados em mapear instituições públicas em todo o território nacional, garantindo que o cidadão, independentemente da sua localização, tenha acesso a informações claras e precisas.", subtitle: "A Nossa Visão", p4: "A nossa visão é ambiciosa: começamos com esta interface funcional, mas o nosso objetivo é evoluir para um ecossistema robusto, sustentado por uma base de dados inteligente e de larga escala. Queremos transformar este projeto numa ferramenta essencial que não apenas mapeie o país, mas que integre e otimize o fluxo de serviços públicos para todos os moçambicanos.", p5: "Acreditamos num Moçambique mais conectado, eficiente e transparente. Este é apenas o primeiro passo do nosso compromisso com a inovação ao serviço do cidadão." },
+            "en": { nav_inicio: "Home", title: "About Us", p1: "The journey of Digital Mapping of Public Services began with a clear purpose: to simplify access to information for all Mozambican citizens, from north to south of the country.", p2: "We, Alfredo, Shelcio and Rodrigues, students at UNISCED, share the conviction that technology is a driver of social transformation. Observing the daily challenges faced by citizens in seeking public services, we decided to unite our skills to create a practical and innovative solution.", p3: "The result is this digital mapping platform, developed to centralize the location of institutions and streamline service delivery. Our focus is not limited to Maputo; we are committed to mapping public institutions across the entire national territory, ensuring that the citizen, regardless of their location, has access to clear and accurate information.", subtitle: "Our Vision", p4: "Our vision is ambitious: we started with this functional interface, but our goal is to evolve into a robust ecosystem, supported by an intelligent and large-scale database. We want to transform this project into an essential tool that not only maps the country but integrates and optimizes the flow of public services for all Mozambicans.", p5: "We believe in a more connected, efficient and transparent Mozambique. This is just the first step of our commitment to innovation in the service of the citizen." }
+        };
+        let lang = "pt";
+        document.getElementById("lang-toggle").addEventListener("click", () => {
+            lang = (lang === "pt") ? "en" : "pt";
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                el.innerText = dict[lang][el.getAttribute("data-i18n")];
+            });
+        });
+    </script>
+</body>
+</html>

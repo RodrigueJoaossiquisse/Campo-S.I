@@ -7,47 +7,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root {
-            --bg-color: #f0f2f5;
-            --text-color: #2c3e50;
-            --nav-bg: rgba(255, 255, 255, 0.2);
-            --btn-bg: rgba(255, 255, 255, 0.3);
-            --accent: #3498db;
-        }
-
-        body.dark-mode {
-            --bg-color: #121212;
-            --text-color: #ffffff;
-            --nav-bg: rgba(0, 0, 0, 0.4);
-            --btn-bg: rgba(255, 255, 255, 0.1);
-        }
+        :root { --bg-color: #f0f2f5; --text-color: #2c3e50; --nav-bg: rgba(255, 255, 255, 0.2); --btn-bg: rgba(255, 255, 255, 0.3); --accent: #3498db; }
+        body.dark-mode { --bg-color: #121212; --text-color: #ffffff; --nav-bg: rgba(0, 0, 0, 0.4); --btn-bg: rgba(255, 255, 255, 0.1); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
-        
-        body { height: 200vh; background-color: var(--bg-color); color: var(--text-color); padding-top: 100px; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding-top: 100px; }
 
         .navbar {
             position: fixed; top: 0; width: 100%; height: 70px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 50px; background: var(--nav-bg); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 20px; background: var(--nav-bg); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000; transition: top 0.4s ease;
         }
 
-        /* O Globo Real como Logo */
-        .logo { font-size: 2rem; cursor: pointer; user-select: none; }
+        .logo { font-size: 1.5rem; cursor: pointer; }
         
-        .nav-links { display: flex; align-items: center; gap: 15px; }
+        /* Layout dos links */
+        .nav-links { display: flex; align-items: center; gap: 8px; }
         
-        /* Botões com fundo e efeito de dedo apontando (pointer) */
         .nav-links a, .nav-links button {
             text-decoration: none; color: var(--text-color); background: var(--btn-bg);
             border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
-            padding: 10px 20px; border-radius: 12px; font-size: 0.95rem; font-weight: 500;
+            padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 500;
         }
 
-        /* Efeito Hover Topo */
-        .nav-links a:hover, .nav-links button:hover {
-            background: var(--accent); color: white; transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        .nav-links a:hover, .nav-links button:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+
+        /* Ajuste para celular (telas menores que 600px) */
+        @media (max-width: 600px) {
+            .navbar { padding: 0 10px; }
+            .nav-links { gap: 4px; }
+            .nav-links a, .nav-links button { padding: 6px 8px; font-size: 0.75rem; }
+            .btn-login { padding: 6px 10px !important; }
         }
 
         .btn-login { background: #2c3e50 !important; color: white !important; }
@@ -57,12 +47,11 @@
 <body>
 
     <nav id="navbar" class="navbar">
-        <!-- Globo real inserido aqui -->
         <div class="logo">🌍</div>
         
         <div class="nav-links">
             <a href="#inicio" data-i18n="inicio">Início</a>
-            <a href="Sobre.html" data-i18n="sobre">Sobre Nós</a>
+            <a href="Sobre.html" data-i18n="sobre">Sobre</a>
             <button id="theme-toggle"><i class="fas fa-adjust"></i></button>
             <button id="lang-toggle"><i class="fas fa-globe"></i></button>
             <a href="/login" class="btn-login" data-i18n="login">Login</a>
@@ -70,7 +59,7 @@
     </nav>
 
     <script>
-        // Lógica de Scroll (Navbar some e aparece)
+        // Scroll Navbar
         let lastScrollTop = 0;
         const navbar = document.getElementById("navbar");
         window.addEventListener("scroll", () => {
@@ -79,13 +68,13 @@
             lastScrollTop = scrollTop;
         });
 
-        // Alternar Tema
+        // Tema
         document.getElementById("theme-toggle").addEventListener("click", () => document.body.classList.toggle("dark-mode"));
 
-        // Tradução simples
+        // Tradução
         const translations = {
-            "pt-mz": { inicio: "Início", sobre: "Sobre Nós", login: "Login" },
-            "en": { inicio: "Home", sobre: "About Us", login: "Login" }
+            "pt-mz": { inicio: "Início", sobre: "Sobre", login: "Login" },
+            "en": { inicio: "Home", sobre: "About", login: "Login" }
         };
 
         let currentLang = "pt-mz";

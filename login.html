@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MapeamentoMZ</title>
+    <style>
+        :root { --accent: #3498db; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Fundo gradiente moderno */
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Efeito Glassmorphism no formulário */
+        .login-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            color: white;
+        }
+
+        .login-card h2 { margin-bottom: 25px; font-size: 1.8rem; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        
+        .input-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+
+        .input-group input::placeholder { color: rgba(255,255,255,0.7); }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: var(--accent);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4); }
+
+        .back-link { margin-top: 20px; display: block; color: white; text-decoration: none; font-size: 0.8rem; opacity: 0.8; }
+        .back-link:hover { opacity: 1; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Entrar no Mapeamento</h2>
+        <form>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="ars.mapeamento@unisced.edu.mz" required>
+            </div>
+            <div class="input-group">
+                <label>Palavra-passe</label>
+                <input type="password" placeholder="********" required>
+            </div>
+            <button type="submit" class="btn-login">ACESSAR</button>
+        </form>
+        <a href="index.html" class="back-link">← Voltar para Início</a>
+    </div>
+
+</body>
+</html>
